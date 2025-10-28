@@ -2,9 +2,9 @@ name: Build Docker Image and Notify
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 env:
   IMAGE_NAME: my-python-app
@@ -15,7 +15,7 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+       uses: actions/checkout@v4
 
     - name: Build Docker image
       id: build
