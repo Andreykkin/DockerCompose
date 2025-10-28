@@ -32,11 +32,11 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
-    - name: Notify Slack on Success
-      if: success()
+    - name: Notify Slack on Failure
+      if: failure()
       uses: 8398a7/action-slack@v3
       with:
         status: success
-        text: "✅ Docker Build Success\n*Image:* ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}\n*Branch:* ${{ github.ref_name }}\n*Commit:* ${{ github.sha }}"
+        text: "❌ Docker Build Failed\n*Image:* ${{ env.IMAGE_NAME }}\n*Branch:* ${{ github.ref_name }}\n*Commit:* ${{ github.sha }}"
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
