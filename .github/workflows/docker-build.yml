@@ -25,56 +25,20 @@ jobs:
 
     - name: Notify Slack on Success
       if: success()
-      uses: slackapi/slack-github-action@v1.24.0
+      uses: 8398a7/action-slack@v3
       with:
-        payload: |
-          {
-            "text": "✅ Docker Build Success",
-            "attachments": [
-              {
-                "color": "good",
-                "fields": [
-                  {
-                    "title": "Image",
-                    "value": "${{ env.IMAGE_NAME }}:${{ steps.build.outputs.image_tag }}",
-                    "short": true
-                  },
-                  {
-                    "title": "Branch",
-                    "value": "${{ github.ref }}",
-                    "short": true
-                  }
-                ]
-              }
-            ]
-          }
+        status: success
+        text: "✅ Docker Build Success\n*Image:* ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}\n*Branch:* ${{ github.ref_name }}\n*Commit:* ${{ github.sha }}"
+        webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
-    - name: Notify Slack on Failure
-      if: failure()
-      uses: slackapi/slack-github-action@v1.24.0
+    - name: Notify Slack on Success
+      if: success()
+      uses: 8398a7/action-slack@v3
       with:
-        payload: |
-          {
-            "text": "❌ Docker Build Failed",
-            "attachments": [
-              {
-                "color": "danger",
-                "fields": [
-                  {
-                    "title": "Image",
-                    "value": "${{ env.IMAGE_NAME }}",
-                    "short": true
-                  },
-                  {
-                    "title": "Branch",
-                    "value": "${{ github.ref }}",
-                    "short": true
-                  }
-                ]
-              }
-            ]
-          }
+        status: success
+        text: "✅ Docker Build Success\n*Image:* ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}\n*Branch:* ${{ github.ref_name }}\n*Commit:* ${{ github.sha }}"
+        webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
