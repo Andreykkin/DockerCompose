@@ -29,7 +29,6 @@ jobs:
       with:
         status: success
         text: "✅ Docker Build Success\n*Image:* ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}\n*Branch:* ${{ github.ref_name }}\n*Commit:* ${{ github.sha }}"
-        webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
@@ -39,6 +38,5 @@ jobs:
       with:
         status: success
         text: "✅ Docker Build Success\n*Image:* ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}\n*Branch:* ${{ github.ref_name }}\n*Commit:* ${{ github.sha }}"
-        webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
